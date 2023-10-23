@@ -33,7 +33,7 @@ public class ShortUrlService {
                     .clickCount(0L)
                     .build();
             repository.save(newEntity);
-            return ShortUrlDto.builder().key(newKey).build();
+            return ShortUrlDto.builder().key(newKey).url(urlDto.getUrl()).build();
         }
     }
 
