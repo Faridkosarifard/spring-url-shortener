@@ -1,6 +1,6 @@
 package com.fk.shortUrl.repository;
 
-import com.fk.shortUrl.entity.ShortUrlEntity;
+import com.fk.shortUrl.domain.entity.ShortUrlEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 /**

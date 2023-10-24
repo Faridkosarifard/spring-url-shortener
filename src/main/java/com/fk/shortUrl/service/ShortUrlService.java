@@ -1,9 +1,9 @@
 package com.fk.shortUrl.service;
 
-import com.fk.shortUrl.entity.ShortUrlEntity;
+import com.fk.shortUrl.domain.entity.ShortUrlEntity;
 import com.fk.shortUrl.repository.ShortUrlRepository;
-import com.fk.shortUrl.web.dto.ShortUrlDto;
-import com.fk.shortUrl.web.util.ShortUrlUtil;
+import com.fk.shortUrl.domain.dto.ShortUrlDto;
+import com.fk.shortUrl.util.ShortUrlUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.web.servlet.view.RedirectView;
