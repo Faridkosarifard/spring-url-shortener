@@ -1,10 +1,11 @@
 package com.fk.shortUrl.api;
 
+import com.fasterxml.jackson.annotation.JsonView;
 import com.fk.shortUrl.common.LinkValidator;
+import com.fk.shortUrl.domain.entity.ShortUrlEntity;
+import com.fk.shortUrl.domain.view.Views;
 import com.fk.shortUrl.service.ShortUrlService;
-import com.fk.shortUrl.domain.dto.ShortUrlDto;
 import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -24,9 +25,10 @@ public class URLRestController {
     private final ShortUrlService service;
 
     @PostMapping("/url")
-    public Object shortUrl(@RequestBody ShortUrlDto  url){
-        if (LinkValidator.getInstance().isLinkValid(url.getUrl())) {
-            return service.createShortUrl(url);
+    @JsonView(Views.Public.class)
+    public Object shortUrl(@RequestBody ShortUrlEntity url){
+        if (LinkValidator.getInstance().isLinkValid(url.getFullUrl())) {
+            return ResponseEntity.ok("KEY: " + service.createShortUrl(url).getKey());
         }else {
             return ResponseEntity.status(HttpStatus.NOT_ACCEPTABLE).build();
         }

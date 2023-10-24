@@ -2,7 +2,6 @@ package com.fk.shortUrl.service;
 
 import com.fk.shortUrl.domain.entity.ShortUrlEntity;
 import com.fk.shortUrl.repository.ShortUrlRepository;
-import com.fk.shortUrl.domain.dto.ShortUrlDto;
 import com.fk.shortUrl.util.ShortUrlUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -20,11 +19,11 @@ public class ShortUrlService {
 
     private final ShortUrlRepository repository;
     private final ShortUrlUtil urlUtil;
-    public ShortUrlDto createShortUrl(ShortUrlDto urlDto){
-        String fullUrl= urlDto.getUrl();
+    public ShortUrlEntity createShortUrl(ShortUrlEntity urlDto){
+        String fullUrl= urlDto.getFullUrl();
         ShortUrlEntity existShortUrl = repository.findByFullUrl(fullUrl);
         if (existShortUrl != null){
-            return ShortUrlDto.builder().key(existShortUrl.getKey()).build();
+            return ShortUrlEntity.builder().key(existShortUrl.getKey()).build();
         }else {
             String newKey = urlUtil.generateUniqueKey();
             ShortUrlEntity newEntity = ShortUrlEntity.builder()
@@ -33,7 +32,7 @@ public class ShortUrlService {
                     .clickCount(0L)
                     .build();
             repository.save(newEntity);
-            return ShortUrlDto.builder().key(newKey).url(urlDto.getUrl()).build();
+            return ShortUrlEntity.builder().key(newKey).fullUrl(urlDto.getFullUrl()).build();
         }
     }
 
