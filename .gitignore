@@ -54,6 +54,7 @@ gradle-app.setting
 ##############################
 out/
 .idea/
+.idea/dataSources
 .idea_modules/
 *.iml
 *.ipr
