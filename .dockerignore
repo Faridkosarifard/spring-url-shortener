@@ -1,0 +1,11 @@
+.git
+.github
+.idea
+target
+.env
+*.iml
+.vscode
+src/test
+README.md
+CHANGELOG.rst
+LICENSE
